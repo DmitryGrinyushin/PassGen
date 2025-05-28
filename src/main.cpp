@@ -5,8 +5,15 @@ int main()
 {
     int min = 1, max = 1, type = 0;
 
-    std::cout << "Укажите тип пароля (0 - только цифры / 1 - все символы)" << std::endl;
-    std::cin >> type;
+    while (true) {
+    std::cout << "Укажите тип пароля (0 - только цифры / другое число - все символы)" << std::endl;
+    if (std::cin >> type) break;
+
+    std::cerr << "Ошибка: нужно ввести целое число!" << std::endl;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    
     std::string data;
     type == 0 ? data = "0123456789" : data = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789!@#$%&*";
     
