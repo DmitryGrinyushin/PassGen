@@ -1,10 +1,19 @@
 #!/bin/bash
 
+# Переход в корневую директорию проекта
+cd "$(dirname "$0")/.." || exit 1
+
+# Проверка существования программы
+if [ ! -f "bin/PassGenTerm" ]; then
+    echo "Ошибка: программа PassGenTerm не найдена в bin/"
+    echo "Сначала скомпилируйте проект:"
+    echo "g++ -std=c++17 -Iinclude src/*.cpp -o bin/PassGenTerm"
+    exit 1
+fi
+
+# Генерация 100 записей
 for i in {1..100}; do
-  login="user$i"
-  password=$(./bin/PassGenTerm -a -m 12 -x 16)  # Пароль из 12-16 символов
-  
-  echo "$login:$password" >> users_db.txt
-done
+    echo "user$i:$(bin/PassGenTerm -a -m 12 -x 16)"
+done > users_db.txt
 
 echo "Готово! Результат записан в users_db.txt"

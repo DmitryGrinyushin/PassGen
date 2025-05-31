@@ -2,9 +2,17 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <random>
 
 RandomPassword::RandomPassword(const std::string& charts, int min, int max) 
-    : sw_chars(charts), min_length(min), max_length(max) {
+    :   gen(std::random_device{}()),
+        len_dist(min, max),
+        char_dist(0, charts.size() - 1),
+        sw_chars(charts),
+        min_length(min),
+        max_length(max)
+    {
+        srand(time(NULL));
         if (min < 0 || max < 0 || min > max)
             throw std::invalid_argument("Неверная длина пароля.");
         if (min == 0 || max == 0)
@@ -12,11 +20,11 @@ RandomPassword::RandomPassword(const std::string& charts, int min, int max)
     }
 
     std::string RandomPassword::operator()() {
-        srand(time(NULL));
-        int len_pass = rand() % (max_length - min_length + 1) + min_length;
-        pass.resize(len_pass);
+        int len_pass = len_dist(gen);  // распределение длины
+        pass.reserve(len_pass);
+    
         for (int j = 0; j < len_pass; ++j) {
-            pass[j] = sw_chars[rand() % (sw_chars.length())];
+            pass += sw_chars[char_dist(gen)];  // распределение символов
         }
         return pass;
     }
