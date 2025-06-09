@@ -14,17 +14,17 @@ RandomPassword::RandomPassword(const std::string& charts, int min, int max)
     {
         srand(time(NULL));
         if (min < 0 || max < 0 || min > max)
-            throw std::invalid_argument("Неверная длина пароля.");
+            throw std::invalid_argument("Invalid password length.");
         if (min == 0 || max == 0)
-            throw std::invalid_argument("Набор символов не может быть пустым.");
+            throw std::invalid_argument("Character set cannot be empty.");
     }
 
     std::string RandomPassword::operator()() {
-        int len_pass = len_dist(gen);  // распределение длины
+        int len_pass = len_dist(gen);  // length distribution
         pass.reserve(len_pass);
     
         for (int j = 0; j < len_pass; ++j) {
-            pass += sw_chars[char_dist(gen)];  // распределение символов
+            pass += sw_chars[char_dist(gen)];  // character distribution
         }
         return pass;
     }
