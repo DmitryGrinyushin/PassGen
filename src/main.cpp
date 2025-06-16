@@ -1,5 +1,6 @@
 #include <iostream>
 #include "pass_generator.h"
+#include "Logger.h"
 #include <cstring> // strcmp
 
 void show_help() {
@@ -17,6 +18,7 @@ void show_help() {
 }
 
 int main(int argc, char* argv[]) {
+
     // set defaults
     std::string chars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789!@#$%&*";
     int min_len = 8;
@@ -49,9 +51,13 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl;
         std::cout << "Generated password: " << std::endl;
         std::cout << password << std::endl;
+
+        Logger::log("Password generated successfully");
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
+        
+        Logger::log(e.what(), "ERROR");
         return 1;
     }
 

@@ -1,12 +1,12 @@
 user1:
 Generated password: 
-8301
+3437
 user2:
 Generated password: 
-9127
+1847
 user3:
 Generated password: 
-8154
+2645
 user4:
 Generated password: 
-1667
+5205
