@@ -1,4 +1,5 @@
 #include "Logger.h"
+#include "PathUtils.h"
 #include <fstream>
 #include <ctime>
 #include <iomanip>
@@ -13,6 +14,7 @@ std::string getCurrentTime() {
 }
 
 void Logger::log(const std::string& message, const std::string& level) {
-    std::ofstream logFile("log.txt", std::ios::app);
+    std::filesystem::path exePath = getExecutablePath();
+    std::ofstream logFile(exePath.parent_path() / "log.txt", std::ios::app);
     logFile << "[" << getCurrentTime() << "] [" << level << "] " << message << std::endl;
 }
