@@ -25,7 +25,7 @@ g++ -std=c++17 -Iinclude src/*.cpp -o bin/PassGenTerm
 ## Usage examples:
 
 ```bash
-./scripts/gen_users.sh -c 50 -m 10 -x 16 -t digits -o my_passwords.txt
+./scripts/user_defined_generator.sh -c 50 -m 10 -x 16 -t digits -o my_passwords.txt
 ```
 
 direct program call is also possible:
