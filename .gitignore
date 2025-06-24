@@ -1,9 +1,36 @@
-# Игнорировать скомпилированные файлы
-*.out
+# === Build artifacts ===
+bin/
 *.o
-*.dSYM/
+*.obj
 *.exe
+*.out
+*.log
 
-# Игнорировать папку сборки
-/build/
-/bin/
+# === Project files ===
+log.txt
+*.db
+*.sqlite
+*.sqlite3
+
+# === Data directory ===
+data/
+
+# === OS/Editor junk ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === VS Code ===
+.vscode/
+
+# === CMake ===
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# === Backup files ===
+*.bak
+*.tmp
